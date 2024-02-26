@@ -1,0 +1,41 @@
+/* Victor Aguilar */
+/* Modeling and Sim */
+/* Fall 2023 */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int diceRoll(int die1, int die2, int tally[]);
+
+int main(void) {
+
+  int x = 0;
+  int y = 0;
+  int z[13] = {0};
+  int sums = diceRoll(x, y, z);
+
+printf("\nDice Roll Simulation:\n\n");
+printf("Sum         Frequency      Relative Frequency\n");
+  for (int i = 2; i <= 12; i++)
+  {
+     sums += z[i];
+     float relFreq = ((float)z[i]/(float)36000);
+     printf("%3d%18d%24.2f\n", i, z[i], relFreq);
+  }
+  printf("\n");
+  return 0;
+}
+
+int diceRoll(int die1, int die2, int tally[]) {
+
+  srand(time(NULL));
+
+  for(int i = 1; i <= 36000; i++) {
+      die1 = 1 + rand() % 6;
+      die2 = 1 + rand() % 6;
+      tally[die1 + die2]++;
+  }
+  return 0;
+}
